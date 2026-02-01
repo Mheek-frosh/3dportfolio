@@ -11,10 +11,12 @@ const Computers = ({ isMobile }) => {
             <directionalLight position={[-2, 5, 2]} intensity={1} />
             <Sphere args={[1, 100, 200]} scale={2.5}>
                 <MeshDistortMaterial
-                    color="#915EFF"
+                    color="#d1d1d1"
                     attach="material"
-                    distort={0.5}
-                    speed={2}
+                    distort={0.4}
+                    speed={1.5}
+                    roughness={0.2}
+                    metalness={0.8}
                 />
             </Sphere>
         </mesh>

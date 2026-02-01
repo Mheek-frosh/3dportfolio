@@ -4,22 +4,34 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {
       colors: {
-        primary: "#050816",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
+        // Light Mode Defaults (Apple/Tesla inspired)
+        primary: "#f5f5f7", // Light Grey Background
+        secondary: "#86868b", // Subtext Grey
+        tertiary: "#ffffff", // Cards/Elements White
+
+        // Dark Mode Mappings
+        "dark-bg": "#000000",
+        "dark-card": "#1d1d1f",
+        "dark-text": "#f5f5f7",
+
+        // Accents
+        accent: "#F6F930", // Vibrant Yellow from reference
+        "accent-secondary": "#5551FF", // Deep Blue from reference
+        "accent-red": "#F6F930", // Replacing Red with Yellow as primary accent
       },
       boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        card: "0px 10px 30px -10px rgba(0,0,0,0.1)",
       },
       screens: {
         xs: "450px",
       },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      }
     },
   },
   plugins: [],

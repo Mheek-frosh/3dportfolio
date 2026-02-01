@@ -1,95 +1,188 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Github } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, ExternalLink } from "lucide-react";
 
 import { styles } from "../styles";
-// import { github } from "../assets"; 
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const ProjectCard = ({
-    index,
-    name,
-    description,
-    tags,
-    image,
-    source_code_link,
-}) => {
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, isLarge }) => {
     return (
-        <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
-            <div
-                className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
-            >
-                <div className='relative w-full h-[230px] bg-black-200 rounded-2xl flex justify-center items-center'>
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            className={`group relative overflow-hidden rounded-3xl ${isLarge ? 'md:col-span-2 md:row-span-2' : ''
+                }`}
+        >
+            <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] bg-white dark:bg-gray-900 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800">
+                {/* Image Container */}
+                <div className="relative w-full h-full overflow-hidden">
                     {image ? (
-                        <img
+                        <motion.img
                             src={image}
                             alt={name}
-                            className='w-full h-full object-cover rounded-2xl'
+                            className="w-full h-full object-cover"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.6 }}
                         />
                     ) : (
-                        <span className="text-secondary text-[24px]">No Image</span>
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5">
+                            <span className="text-accent text-2xl font-bold">No Image</span>
+                        </div>
                     )}
 
-                    <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-                        <div
-                            onClick={() => window.open(source_code_link, "_blank")}
-                            className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        {tags.map((tag) => (
+                            <span
+                                key={`${name}-${tag.name}`}
+                                className="px-3 py-1 bg-accent text-black text-xs font-bold rounded-full"
+                            >
+                                {tag.name}
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-white font-black text-2xl md:text-3xl mb-2 transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                        {name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150 line-clamp-3">
+                        {description}
+                    </p>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                        <motion.a
+                            href={source_code_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-accent transition-colors"
                         >
-                            <Github className='w-1/2 h-1/2 object-contain' color="white" />
-                        </div>
+                            <Github className="w-4 h-4" />
+                            <span className="text-sm">Code</span>
+                        </motion.a>
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 px-4 py-2 bg-accent text-black rounded-full font-semibold hover:bg-white transition-colors"
+                        >
+                            <ExternalLink className="w-4 h-4" />
+                            <span className="text-sm">Live</span>
+                        </motion.button>
                     </div>
                 </div>
 
-                <div className='mt-5'>
-                    <h3 className='text-white font-bold text-[24px]'>{name}</h3>
-                    <p className='mt-2 text-secondary text-[14px]'>{description}</p>
-                </div>
-
-                <div className='mt-4 flex flex-wrap gap-2'>
-                    {tags.map((tag) => (
-                        <p
-                            key={`${name}-${tag.name}`}
-                            className={`text-[14px] ${tag.color}`}
-                        >
-                            #{tag.name}
-                        </p>
-                    ))}
-                </div>
+                {/* Corner Accent */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-accent opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-bl-full" />
             </div>
         </motion.div>
     );
 };
 
 const Works = () => {
+    const [activeFilter, setActiveFilter] = useState("All");
+
+    const filters = ["All", "Web", "Mobile", "3D", "Design"];
+
+    const filteredProjects = activeFilter === "All"
+        ? projects
+        : projects.filter(project =>
+            project.tags.some(tag => tag.name.toLowerCase() === activeFilter.toLowerCase())
+        );
+
     return (
-        <>
+        <div className="flex flex-col gap-12">
+            {/* Header */}
             <motion.div variants={textVariant()}>
-                <p className={`${styles.sectionSubText} `}>My work</p>
-                <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
+                <p className={`${styles.sectionSubText} text-accent uppercase tracking-widest`}>
+                    My work
+                </p>
+                <h2 className={`${styles.sectionHeadText} text-gray-900 dark:text-white`}>
+                    PROJECTS.
+                </h2>
             </motion.div>
 
-            <div className='w-full flex'>
-                <motion.p
-                    variants={fadeIn("", "", 0.1, 1)}
-                    className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-                >
-                    Following projects showcases my skills and experience through
-                    real-world examples of my work. Each project is briefly described with
-                    links to code repositories and live demos in it. It reflects my
-                    ability to solve complex problems, work with different technologies,
-                    and manage projects effectively.
-                </motion.p>
-            </div>
+            {/* Description */}
+            <motion.p
+                variants={fadeIn("", "", 0.1, 1)}
+                className='text-secondary dark:text-gray-300 text-[17px] md:text-[18px] max-w-3xl leading-[30px]'
+            >
+                Following projects showcase my skills and experience through
+                real-world examples. Each project is briefly described with
+                links to code repositories and live demos.
+            </motion.p>
 
-            <div className='mt-20 flex flex-wrap gap-7'>
-                {projects.map((project, index) => (
-                    <ProjectCard key={`project-${index}`} index={index} {...project} />
+            {/* Filter Buttons */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="flex flex-wrap gap-4 justify-center md:justify-start"
+            >
+                {filters.map((filter) => (
+                    <motion.button
+                        key={filter}
+                        onClick={() => setActiveFilter(filter)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeFilter === filter
+                            ? 'bg-accent text-black shadow-lg'
+                            : 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
+                            }`}
+                    >
+                        {filter}
+                    </motion.button>
                 ))}
-            </div>
-        </>
+            </motion.div>
+
+            {/* Bento Grid */}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={activeFilter}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr"
+                >
+                    {filteredProjects.map((project, index) => (
+                        <ProjectCard
+                            key={`project-${activeFilter}-${index}`}
+                            index={index}
+                            {...project}
+                            isLarge={index === 0 && activeFilter === "All"}
+                        />
+                    ))}
+                </motion.div>
+            </AnimatePresence>
+
+            {/* No Results */}
+            {filteredProjects.length === 0 && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-20"
+                >
+                    <p className="text-secondary dark:text-gray-400 text-xl">
+                        No projects found for this category.
+                    </p>
+                </motion.div>
+            )}
+        </div>
     );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "work");

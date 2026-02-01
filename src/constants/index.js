@@ -9,12 +9,18 @@ import {
 
 export const navLinks = [
     {
-        id: "about",
-        title: "About",
+        id: "hero",
+        title: "Home",
     },
     {
         id: "work",
-        title: "Work",
+        title: "Projects",
+    },
+    {
+        id: "cv",
+        title: "CV",
+        link: "https://drive.google.com/file/d/1lxODRQ3jkDxTiXzXMA4-OF4Yb8QDKK93/view?usp=sharing",
+        isExternal: true,
     },
     {
         id: "contact",
@@ -204,7 +210,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: null, // Placeholder to be handled in component
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
         source_code_link: "https://github.com/",
     },
     {
@@ -225,7 +231,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: null,
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
         source_code_link: "https://github.com/",
     },
     {
@@ -246,7 +252,49 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: null,
+        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
+        source_code_link: "https://github.com/",
+    },
+    {
+        name: "Portfolio Website",
+        description:
+            "Modern portfolio showcasing creative work with smooth animations and responsive design.",
+        tags: [
+            {
+                name: "react",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "threejs",
+                color: "green-text-gradient",
+            },
+            {
+                name: "tailwind",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
+        source_code_link: "https://github.com/",
+    },
+    {
+        name: "Task Management App",
+        description:
+            "Collaborative task management platform with real-time updates and team collaboration features.",
+        tags: [
+            {
+                name: "nodejs",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "mongodb",
+                color: "green-text-gradient",
+            },
+            {
+                name: "socketio",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
         source_code_link: "https://github.com/",
     },
 ];
