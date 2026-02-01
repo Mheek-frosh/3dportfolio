@@ -113,7 +113,7 @@ const Works = () => {
                     My work
                 </p>
                 <h2 className={`${styles.sectionHeadText} text-gray-900 dark:text-white`}>
-                    PROJECTS.
+                    PROJECTS
                 </h2>
             </motion.div>
 

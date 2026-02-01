@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Github, Linkedin, Music, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Github, Linkedin, Send } from "lucide-react";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
@@ -250,7 +250,13 @@ const Contact = () => {
                                 whileTap={{ scale: 0.95 }}
                                 className="p-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-800 group"
                             >
-                                <Music className="w-6 h-6 text-black dark:text-white group-hover:text-accent transition-colors" />
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    className="w-6 h-6 fill-black dark:fill-white group-hover:fill-[#00f2ea] transition-colors"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.03-2.86-.31-4.13-1.03-2.28-1.3-3.06-4.04-2.35-6.44.25-.85.71-1.64 1.31-2.29 1.54-1.68 4.12-2.31 6.2-1.49v4.14c-.91-.34-1.92-.17-2.73.39-.51.36-.81.93-.88 1.54-.15.91.34 1.83 1.1 2.29.47.28 1.05.35 1.6.32 1.39-.08 2.31-1.26 2.37-2.58.05-3.64.02-7.29.03-10.93-1.76-.01-3.52 0-5.28 0V.02z" />
+                                </svg>
                             </motion.a>
                         </div>
                     </div>

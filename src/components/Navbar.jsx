@@ -41,7 +41,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    <p className='text-black dark:text-white text-[18px] font-bold cursor-pointer tracking-tight'>
+                    <p className={`${scrolled ? "text-black dark:text-white" : "text-white"} text-[18px] font-bold cursor-pointer tracking-tight`}>
                         Codewithmike<span className='text-accent'>.</span>
                     </p>
                 </Link>
@@ -52,7 +52,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         {navLinks.map((nav) => (
                             <li
                                 key={nav.id}
-                                className={`${active === nav.title ? "text-accent-red" : "text-black dark:text-white"
+                                className={`${active === nav.title ? "text-accent-red" : (scrolled ? "text-black dark:text-white" : "text-white")
                                     } text-[16px] font-medium cursor-pointer hover:text-accent-red transition-colors`}
                                 onClick={() => setActive(nav.title)}
                             >
@@ -75,7 +75,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         className="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
                         aria-label="Toggle Theme"
                     >
-                        {theme === 'light' ? <Moon size={18} color="black" /> : <Sun size={18} color="white" />}
+                        {theme === 'light' ? <Moon size={18} color={scrolled ? "black" : "white"} /> : <Sun size={18} color="white" />}
                     </button>
                 </div>
 
@@ -84,11 +84,11 @@ const Navbar = ({ theme, toggleTheme }) => {
                     <button
                         onClick={toggleTheme}
                     >
-                        {theme === 'light' ? <Moon size={20} color="black" /> : <Sun size={20} color="white" />}
+                        {theme === 'light' ? <Moon size={20} color={scrolled ? "black" : "white"} /> : <Sun size={20} color="white" />}
                     </button>
 
                     <div className='w-[28px] h-[28px] object-contain cursor-pointer flex items-center justify-center' onClick={() => setToggle(!toggle)} >
-                        {toggle ? <X color={theme === 'light' ? "black" : "white"} /> : <Menu color={theme === 'light' ? "black" : "white"} />}
+                        {toggle ? <X color={(!scrolled || theme === 'dark') ? "white" : "black"} /> : <Menu color={(!scrolled || theme === 'dark') ? "white" : "black"} />}
                     </div>
 
                     <div

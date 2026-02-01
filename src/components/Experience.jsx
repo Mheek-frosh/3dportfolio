@@ -60,7 +60,7 @@ const Experience = () => {
                 <p className={`${styles.sectionSubText} text-center`}>
                     What I have done so far
                 </p>
-                <h2 className={`${styles.sectionHeadText} text-center`}>
+                <h2 className={`${styles.sectionHeadText} text-gray-900 dark:text-white text-center`}>
                     Work Experience.
                 </h2>
             </motion.div>

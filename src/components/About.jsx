@@ -27,7 +27,7 @@ const About = () => {
                 <p className={`${styles.sectionSubText} text-accent uppercase tracking-widest`}>
                     Introduction
                 </p>
-                <h2 className={`${styles.sectionHeadText} text-black dark:text-white max-w-5xl leading-[1.05]`}>
+                <h2 className={`${styles.sectionHeadText} text-gray-900 dark:text-white max-w-5xl leading-[1.05]`}>
                     I'M A CREATIVE DEVELOPER BUILDING{" "}
                     <span className="relative inline-block">
                         <span className="text-accent">DIGITAL</span>
