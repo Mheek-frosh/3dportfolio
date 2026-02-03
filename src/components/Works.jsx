@@ -174,14 +174,14 @@ const Works = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="grid grid-cols-1 gap-12"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {filteredProjects.map((project, index) => (
                         <ProjectCard
                             key={`project-${activeFilter}-${index}`}
                             index={index}
                             {...project}
-                            isLarge={true}
+                            isLarge={index === 0 || (index === 2 && project.isMobile)}
                         />
                     ))}
                 </motion.div>

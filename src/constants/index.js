@@ -9,7 +9,7 @@ import {
 
 import p1 from "../assets/p1.mp4";
 import p3 from "../assets/p3.mp4";
-import recording from "../assets/Recording 2026-01-16 095237.mp4";
+import p4 from "../assets/p4.jpeg";
 
 export const navLinks = [
     {
@@ -256,7 +256,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: recording,
+        image: p4,
         source_code_link: "https://github.com/",
         isMobile: true,
     },
