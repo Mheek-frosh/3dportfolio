@@ -7,6 +7,10 @@ import {
     Mail, // For Contact
 } from "lucide-react";
 
+import p1 from "../assets/p1.mp4";
+import p3 from "../assets/p3.mp4";
+import recording from "../assets/Recording 2026-01-16 095237.mp4";
+
 export const navLinks = [
     {
         id: "hero",
@@ -192,6 +196,69 @@ const testimonials = [
 ];
 
 const projects = [
+    {
+        name: "Eco-Friendly Website",
+        description:
+            "A comprehensive website showcase for sustainable living, featuring modern animations and responsive design.",
+        tags: [
+            {
+                name: "React",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Tailwind",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Web",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: p1,
+        source_code_link: "https://github.com/",
+    },
+    {
+        name: "Creative Brand Platform",
+        description:
+            "A sleek, interactive platform designed for creative agencies to showcase their portfolio and services.",
+        tags: [
+            {
+                name: "React",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Framer",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Web",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: p3,
+        source_code_link: "https://github.com/",
+    },
+    {
+        name: "Mobile Banking UI",
+        description:
+            "Advanced mobile banking application with real-time transaction tracking and secure authentication.",
+        tags: [
+            {
+                name: "Flutter",
+                color: "blue-text-gradient",
+            },
+            {
+                name: "Dart",
+                color: "green-text-gradient",
+            },
+            {
+                name: "Mobile",
+                color: "pink-text-gradient",
+            },
+        ],
+        image: recording,
+        source_code_link: "https://github.com/",
+    },
     {
         name: "Mobile Education Platform",
         description:

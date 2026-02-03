@@ -22,16 +22,29 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                 {/* Image Container */}
                 <div className="relative w-full h-full overflow-hidden">
                     {image ? (
-                        <motion.img
-                            src={image}
-                            alt={name}
-                            className="w-full h-full object-cover"
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.6 }}
-                        />
+                        image.endsWith('.mp4') ? (
+                            <motion.video
+                                src={image}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.6 }}
+                            />
+                        ) : (
+                            <motion.img
+                                src={image}
+                                alt={name}
+                                className="w-full h-full object-cover"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.6 }}
+                            />
+                        )
                     ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5">
-                            <span className="text-accent text-2xl font-bold">No Image</span>
+                            <span className="text-accent text-2xl font-bold">No Media</span>
                         </div>
                     )}
 
@@ -156,14 +169,14 @@ const Works = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr"
+                    className="grid grid-cols-1 gap-12"
                 >
                     {filteredProjects.map((project, index) => (
                         <ProjectCard
                             key={`project-${activeFilter}-${index}`}
                             index={index}
                             {...project}
-                            isLarge={index === 0 && activeFilter === "All"}
+                            isLarge={true}
                         />
                     ))}
                 </motion.div>
