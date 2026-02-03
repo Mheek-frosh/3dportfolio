@@ -7,7 +7,7 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, isLarge }) => {
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, isLarge, isMobile }) => {
     return (
         <motion.div
             layout
@@ -15,14 +15,15 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.5 }}
-            className={`group relative overflow-hidden rounded-3xl ${isLarge ? 'md:col-span-2 md:row-span-2' : ''
+            className={`group relative overflow-hidden rounded-3xl ${isLarge ? 'md:col-span-2' : ''
                 }`}
         >
-            <div className="relative w-full h-full min-h-[300px] md:min-h-[400px] bg-white dark:bg-gray-900 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800">
-                {/* Image Container */}
-                <div className="relative w-full h-full overflow-hidden">
+            <div className={`relative w-full ${isMobile ? 'min-h-[500px] md:min-h-[600px]' : 'min-h-[300px] md:min-h-[400px]'} bg-white dark:bg-gray-900 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center p-6`}>
+
+                {/* Media Container (Phone Frame for Mobile) */}
+                <div className={`relative overflow-hidden ${isMobile ? 'w-[280px] aspect-[9/19] rounded-[3rem] border-[8px] border-gray-800 dark:border-gray-700 shadow-2xl' : 'w-full h-full absolute inset-0'}`}>
                     {image ? (
-                        image.endsWith('.mp4') ? (
+                        image.endsWith?.('.mp4') || image.includes('p1') || image.includes('p3') || image.includes('Recording') ? (
                             <motion.video
                                 src={image}
                                 autoPlay
@@ -30,7 +31,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                                 muted
                                 playsInline
                                 className="w-full h-full object-cover"
-                                whileHover={{ scale: 1.1 }}
+                                whileHover={{ scale: 1.05 }}
                                 transition={{ duration: 0.6 }}
                             />
                         ) : (
@@ -48,14 +49,16 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                         </div>
                     )}
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {!isMobile && (
+                        /* Gradient Overlay for Landscape */
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    )}
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                <div className={`${isMobile ? 'relative mt-8 w-full' : 'absolute inset-0 p-6 md:p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform duration-500'}`}>
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <div className={`flex flex-wrap gap-2 mb-4 ${!isMobile ? 'opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100' : ''}`}>
                         {tags.map((tag) => (
                             <span
                                 key={`${name}-${tag.name}`}
@@ -67,24 +70,24 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-white font-black text-2xl md:text-3xl mb-2 transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                    <h3 className={`${isMobile ? 'text-gray-900 dark:text-white' : 'text-white'} font-black text-2xl md:text-3xl mb-2 ${!isMobile ? 'transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500' : ''}`}>
                         {name}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150 line-clamp-3">
+                    <p className={`${isMobile ? 'text-gray-600 dark:text-gray-300' : 'text-gray-300'} text-sm md:text-base leading-relaxed mb-4 ${!isMobile ? 'opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150 line-clamp-3' : ''}`}>
                         {description}
                     </p>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                    <div className={`flex gap-3 ${!isMobile ? 'opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200' : ''}`}>
                         <motion.a
                             href={source_code_link}
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-accent transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full font-semibold hover:bg-accent transition-colors"
                         >
                             <Github className="w-4 h-4" />
                             <span className="text-sm">Code</span>
@@ -92,7 +95,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 px-4 py-2 bg-accent text-black rounded-full font-semibold hover:bg-white transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-accent text-black rounded-full font-semibold hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black transition-colors"
                         >
                             <ExternalLink className="w-4 h-4" />
                             <span className="text-sm">Live</span>
@@ -101,7 +104,9 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                 </div>
 
                 {/* Corner Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-accent opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-bl-full" />
+                {!isMobile && (
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-accent opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-bl-full" />
+                )}
             </div>
         </motion.div>
     );

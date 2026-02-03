@@ -258,6 +258,7 @@ const projects = [
         ],
         image: recording,
         source_code_link: "https://github.com/",
+        isMobile: true,
     },
     {
         name: "Mobile Education Platform",
@@ -279,6 +280,7 @@ const projects = [
         ],
         image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
         source_code_link: "https://github.com/",
+        isMobile: true,
     },
     {
         name: "E-Commerce App",
@@ -300,6 +302,7 @@ const projects = [
         ],
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
         source_code_link: "https://github.com/",
+        isMobile: true,
     },
     {
         name: "Company Profiles Design",
