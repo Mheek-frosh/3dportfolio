@@ -10,6 +10,7 @@ import {
 import p1 from "../assets/p1.mp4";
 import p3 from "../assets/p3.mp4";
 import p4 from "../assets/p4.jpeg";
+import p5 from "../assets/p5.mp4";
 
 export const navLinks = [
     {
@@ -278,7 +279,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
         source_code_link: "https://github.com/",
         isMobile: true,
     },
@@ -300,7 +301,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80",
         source_code_link: "https://github.com/",
         isMobile: true,
     },
@@ -343,7 +344,7 @@ const projects = [
                 color: "pink-text-gradient",
             },
         ],
-        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
+        image: p5,
         source_code_link: "https://github.com/",
     },
     {

@@ -23,7 +23,14 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
                 {/* Media Container (Phone Frame for Mobile) */}
                 <div className={`relative overflow-hidden ${isMobile ? 'w-[280px] aspect-[9/19] rounded-[3rem] border-[8px] border-gray-800 dark:border-gray-700 shadow-2xl' : 'w-full h-full absolute inset-0'}`}>
                     {image ? (
-                        image.endsWith?.('.mp4') || image.includes('p1') || image.includes('p3') || image.includes('Recording') ? (
+                        (typeof image === 'string' && (
+                            image.endsWith('.mp4') ||
+                            image.includes('.mp4') ||
+                            image.includes('p1') ||
+                            image.includes('p3') ||
+                            image.includes('p5') ||
+                            image.includes('Recording')
+                        )) ? (
                             <motion.video
                                 src={image}
                                 autoPlay
