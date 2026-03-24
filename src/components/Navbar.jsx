@@ -92,14 +92,14 @@ const Navbar = ({ theme, toggleTheme }) => {
                     </div>
 
                     <div
-                        className={`${!toggle ? "hidden" : "flex"
-                            } p-6 bg-white dark:bg-black absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-card ring-1 ring-black/5 dark:ring-white/10`}
+                        className={`${!toggle ? "translate-x-full opacity-0" : "translate-x-0 opacity-100"
+                            } transition-all duration-500 fixed inset-0 top-[70px] bg-white/95 dark:bg-black/95 backdrop-blur-xl z-50 flex flex-col p-10 sm:hidden`}
                     >
-                        <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+                        <ul className='list-none flex flex-col gap-6 items-center justify-center flex-1'>
                             {navLinks.map((nav) => (
                                 <li
                                     key={nav.id}
-                                    className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-accent" : "text-secondary"
+                                    className={`font-poppins font-bold cursor-pointer text-[24px] ${active === nav.title ? "text-accent" : "text-black dark:text-white"
                                         }`}
                                     onClick={() => {
                                         setToggle(!toggle);

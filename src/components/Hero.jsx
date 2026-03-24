@@ -133,8 +133,8 @@ const Hero = () => {
 
             {/* Main Content */}
             <div className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col lg:flex-row items-center justify-center px-6 md:px-12 gap-10 lg:gap-20">
-                {/* Floating Icons */}
-                <div className="absolute inset-0 pointer-events-none">
+                {/* Floating Icons - Hidden on small screens */}
+                <div className="absolute inset-0 pointer-events-none hidden lg:block">
                     <motion.div
                         className="absolute top-20 left-[10%]"
                         animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
